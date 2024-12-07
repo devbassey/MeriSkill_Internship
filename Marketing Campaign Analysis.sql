@@ -8,9 +8,10 @@ SELECT * FROM dbo.Order_Data_meriskill;
 
 -- STEP 1: REMOVE DUPLICATES
 
-SELECT OrderID, CustID, ProductSKU, Customer_Name, count(*)
+SELECT OrderID, CustID, count(*) AS duplicate_value
 FROM dbo.Order_Data_meriskill
-GROUP BY OrderID, CustID, ProductSKU, Customer_Name;
+GROUP BY OrderID, CustID
+HAVING COUNT(*) > 1;
 
    
 -- STEP 2: TRIM WHITESPACES
