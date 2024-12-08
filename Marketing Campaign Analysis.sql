@@ -5,10 +5,30 @@ USE MeriskillOrderData;
 
 SELECT * FROM dbo.Order_Data_meriskill;
 
+SELECT TOP 10 * FROM DBO.Order_Data_meriskill;
+
+
 
 -- DATA CLEANING PROCESS
 
--- STEP 1: IDENTIFYING AND REMOVING DUPLICATES
+-- IDENTIFYING AND REMOVING DUPLICATES
+
+-- 1. Use Common Table Expressions (CTE)
+WITH CTE AS (
+    SELECT 
+        *, 
+        ROW_NUMBER() OVER (PARTITION BY OrderID, CustID ORDER BY OrderID) AS RowNum 
+    FROM dbo.Order_Data_meriskill
+)
+
+SELECT * FROM CTE
+WHERE RowNum > 1;
+
+
+
+
+
+
 
 SELECT OrderID, CustID, count(*) AS duplicate_value
 FROM dbo.Order_Data_meriskill
