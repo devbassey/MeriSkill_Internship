@@ -13,31 +13,22 @@ SELECT TOP 10 * FROM DBO.Order_Data_meriskill;
 
 -- IDENTIFYING AND REMOVING DUPLICATES
 
--- 1. Use Common Table Expressions (CTE)
+-- 1. Use Common Table Expressions (CTE) to Filter Duplicate Rows
 WITH CTE AS (
     SELECT 
-        *, 
+        OrderID, 
+        CustID, 
+        -- other columns you need,
         ROW_NUMBER() OVER (PARTITION BY OrderID, CustID ORDER BY OrderID) AS RowNum 
     FROM dbo.Order_Data_meriskill
 )
 
-SELECT * FROM CTE
-WHERE RowNum > 1;
+--SELECT * FROM CTE
+--WHERE RowNum = 1
 
+-- Use Delete Clause to Delete Duplicate Rows
 
-
-
-
-
-
-SELECT OrderID, CustID, count(*) AS duplicate_value
-FROM dbo.Order_Data_meriskill
-GROUP BY OrderID, CustID
-HAVING COUNT(*) > 1
-ORDER BY OrderID ASC;
-
-SELECT DISTINCT OrderID
-from dbo.Order_Data_meriskill
+DELETE FROM CTE WHERE RowNum > 1;
 
    
 -- STEP 2: TRIM WHITESPACES
