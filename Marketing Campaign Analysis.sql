@@ -35,3 +35,8 @@ DELETE FROM CTE WHERE RowNum > 1;
 UPDATE dbo.Order_Data_meriskill
 SET Customer_Name = LTRIM(RTRIM(Customer_Name)),
     AcquisitionSource = LTRIM(RTRIM(AcquisitionSource));
+
+-- STEP 3: Handling Missing Values
+SELECT *
+FROM dbo.Order_Data_meriskill
+WHERE your_column IS NULL;
