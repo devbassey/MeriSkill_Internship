@@ -24,7 +24,7 @@ WITH CTE AS (
 )
 
 --SELECT * FROM CTE
---WHERE RowNum = 1
+--WHERE RowNum = 1;
 
 -- 2. Use Delete Clause to Delete Duplicate Rows
 
@@ -77,3 +77,55 @@ WHERE
 
 
 -- STEP 3: Handling Missing Values
+--1. Identifying Missing Data
+
+SELECT 
+    OrderID, Region, Country, CustID, Customer_Name, ProductSKU, Product_Category, 
+    OrderLineItem, OrderQuantity, ProductCost, ProductPrice, OrderDate, AcquisitionSource, 
+    TransactionID, Fraud, PaymentMethod, CardType, Gender
+FROM 
+    dbo.Order_Data_meriskill
+WHERE 
+    OrderID IS NULL 
+    OR Region IS NULL 
+    OR Country IS NULL 
+    OR CustID IS NULL 
+    OR Customer_Name IS NULL 
+    OR ProductSKU IS NULL 
+    OR Product_Category IS NULL 
+    OR OrderLineItem IS NULL 
+    OR OrderQuantity IS NULL 
+    OR ProductCost IS NULL 
+    OR ProductPrice IS NULL 
+    OR OrderDate IS NULL 
+    OR AcquisitionSource IS NULL 
+    OR TransactionID IS NULL 
+    OR Fraud IS NULL 
+    OR PaymentMethod IS NULL 
+    OR CardType IS NULL 
+    OR Gender IS NULL;
+
+
+DELETE FROM dbo.Order_Data_meriskill
+WHERE 
+    OrderID IS NULL 
+    OR Region IS NULL 
+    OR Country IS NULL 
+    OR CustID IS NULL 
+    OR Customer_Name IS NULL 
+    OR ProductSKU IS NULL 
+    OR Product_Category IS NULL 
+    OR OrderLineItem IS NULL 
+    OR OrderQuantity IS NULL 
+    OR ProductCost IS NULL 
+    OR ProductPrice IS NULL 
+    OR OrderDate IS NULL 
+    OR AcquisitionSource IS NULL 
+    OR TransactionID IS NULL 
+    OR Fraud IS NULL 
+    OR PaymentMethod IS NULL 
+    OR CardType IS NULL 
+    OR Gender IS NULL;
+
+
+select gender from dbo.Order_Data_meriskill where gender is null
