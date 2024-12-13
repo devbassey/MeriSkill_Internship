@@ -26,7 +26,7 @@ WITH CTE AS (
 --SELECT * FROM CTE
 --WHERE RowNum = 1
 
--- 2 Use Delete Clause to Delete Duplicate Rows
+-- 2. Use Delete Clause to Delete Duplicate Rows
 
 DELETE FROM CTE WHERE RowNum > 1;
 
